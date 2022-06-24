@@ -5,7 +5,7 @@ import cv2
 
 while True:
     # _,frame = cap.read()
-    frame = cv2.imread(r'C:\Users\Dani\Desktop\30x30.jpeg',-1)
+    frame = cv2.imread(r'30x30.jpeg',-1)
     frame = cv2.resize(frame, (0,0) ,fx=0.5,fy=0.5)
     
     gray_image1 = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -17,7 +17,7 @@ while True:
 
 while True:
     # _, frame = cap.read()
-    frame = cv2.imread(r'C:\Users\Dani\Desktop\30x30_Objects.jpeg',-1)
+    frame = cv2.imread(r'\images\30x30_Objects.jpeg',-1)
     frame = cv2.resize(frame, (0,0) ,fx=0.5,fy=0.5)
     
     gray_image2 = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
