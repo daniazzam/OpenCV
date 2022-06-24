@@ -1,12 +1,15 @@
 from pickletools import uint8
 import numpy as np
 import cv2 
+import os
 
 #cap = cv2.VideoCapture(0)
+dirname, filename = os.path.split(os.path.abspath(__file__))
+
 
 while True:
     #_, frame = cap.read()
-    frame = cv2.imread(r'C:\Users\Dani\Desktop\30x30.jpeg',-1)
+    frame = cv2.imread(dirname+'\images\img1.jpeg',-1)
     frame = cv2.resize(frame, (0,0) ,fx=0.5,fy=0.5)
 
     height, width, _ = frame.shape
@@ -33,6 +36,7 @@ while True:
     column_loc = totalc/total_totalc
 
     row_sum = np.matrix(np.sum(green,1))
+    row_sum = row_sum.transpose()
     row_number = np.matrix(np.arange(height)) 
     row_multiply = np.multiply(row_sum,row_number)
     totalr = np.sum(row_multiply)
