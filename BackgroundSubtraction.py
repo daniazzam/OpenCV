@@ -2,12 +2,12 @@ import numpy as np
 import cv2 
 import os
 
-#cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0)
 dirname, filename = os.path.split(os.path.abspath(__file__))
 while True:
-    # _,frame = cap.read()
-    frame = cv2.imread(dirname+'\images\img1.jpeg',-1)
-    frame = cv2.resize(frame, (0,0) ,fx=0.5,fy=0.5)
+    _,frame = cap.read()
+    #frame = cv2.imread(dirname+'\images\img1.jpeg',-1)
+    #frame = cv2.resize(frame, (0,0) ,fx=0.5,fy=0.5)
     
     gray_image1 = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     cv2.imshow('background',gray_image1)
@@ -17,9 +17,9 @@ while True:
         break 
 
 while True:
-    # _, frame = cap.read()
-    frame = cv2.imread(dirname+'\images\img2.jpeg',-1)
-    frame = cv2.resize(frame, (0,0) ,fx=0.5,fy=0.5)
+    _, frame = cap.read()
+    #frame = cv2.imread(dirname+'\images\img2.jpeg',-1)
+    #frame = cv2.resize(frame, (0,0) ,fx=0.5,fy=0.5)
     
     gray_image2 = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     cv2.imshow('foreground',gray_image2)
