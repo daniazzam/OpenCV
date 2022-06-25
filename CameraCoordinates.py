@@ -75,4 +75,4 @@ Y_location = row_loc * cm_to_pixel
 
 
 print('X: ' +str(int(column_loc)) +'\nY: '+str(int(row_loc)))
-print('X: ' +str(float(X_location)) +' cm\nY: '+str(Y_location)+' cm') 
+print('X: ' +str(X_location) +' cm\nY: '+str(Y_location)+' cm') 
