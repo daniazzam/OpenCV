@@ -91,6 +91,7 @@ while True:
         column_loc = totalc/total_totalc
     else:
         column_loc = 155+150
+    coilumn_loc = int(column_loc)
 
     row_sum = np.matrix(np.sum(BW,1))
     row_sum = row_sum.transpose()
@@ -103,9 +104,11 @@ while True:
         row_loc = totalr/total_totalr
     else:
         row_loc = 155+150
+    row_loc=int(row_loc)
 
     if column_loc>0 and row_loc>0:
         cv2.circle(ROI_frame,(int(column_loc),int(row_loc)),1,(0,0,255),2)
+        
         #print('X: ' +str(int(column_loc)) +'\nY: '+str(int(row_loc)))
 
         row_loc_cm = row_loc * cm_from_pixel
@@ -117,18 +120,20 @@ while True:
         #print('Initial coordinates in cm wrt center: X: ' + str(x_wrtCenter)+" Y: "+str(y_wrtCenter))
 
         #get new coordinates wrt to initial frame depth
-        new_x_cm, new_y_cm  = getConversion(x_wrtCenter, y_wrtCenter, depth_z=40, reference_z=50)
+        new_x_cm, new_y_cm  = getConversion(x_wrtCenter, y_wrtCenter, depth_z=45, reference_z=50)
         #print('Coordinates after conversion in cm: X: ' + str(new_x_cm)+" Y: "+str(new_y_cm))
+
+        cv2.putText(frame, f'X: {x_wrtCenter:.1f} | Y: {y_wrtCenter:.1f} | Z: {50-45} (cm)', (int(91+column_loc-72),int(155+row_loc-5)), cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0,0,255), 1)
 
         #new coordinates wrt frame in pixels
         new_x_wrtFrame, new_y_wrtFrame = getCoordinatesWRTFrame(new_x_cm * pixel_from_cm, new_y_cm * pixel_from_cm, ROI_x_center, ROI_y_center )
         #print('new coordinates wrt frame in pixels: X: ' + str(new_x_wrtFrame)+" Y: "+str(new_y_wrtFrame))
 
         cv2.line(ROI_frame, (int(ROI_x_center),int(ROI_y_center)), (int(new_x_wrtFrame),int(new_y_wrtFrame)), (0,0,0), 1) 
-        cv2.circle(ROI_frame,(int(new_x_wrtFrame),int(new_y_wrtFrame)),1,(255,0,0),2)
-
+        cv2.circle(ROI_frame,(int(new_x_wrtFrame),int(new_y_wrtFrame)),1,(255,0,0),2) 
+        cv2.putText(frame, f'X: {new_x_cm:.1f} | Y: {new_y_cm:.1f} | Z: 0 (cm)', (int(91+new_x_wrtFrame-72),int(155+new_y_wrtFrame-5)), cv2.FONT_HERSHEY_SIMPLEX, 0.3, (255,0,0), 1)
     cv2.imshow('final ROI',ROI_frame)
-    cv2.imshow('final frame',frame)
+    cv2.imshow('Camera',frame)
     k = cv2.waitKey(1) & 0xff  
     if k == 27: 
         break 
