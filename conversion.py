@@ -90,6 +90,7 @@ excat_coordinates_wrtFrame = getCoordinatesWRTFrame(new_x*pixel_from_cm, new_y*p
 new_x_wrtFrame, new_y_wrtFrame = int(excat_coordinates_wrtFrame[0]), int(excat_coordinates_wrtFrame[1])
 print('new coordinates wrt frame in pixels: X: ' + str(new_x_wrtFrame)+" Y: "+str(new_y_wrtFrame))
 
+cv2.circle(sub_frame, (int(x_wrtCenter), int(y_wrtCenter)), 1, (0,255,255), 2)
 cv2.circle(sub_frame, (new_x_wrtFrame, new_y_wrtFrame), 1, (0,0,255), 2)
 cv2.imshow('sub frame', sub_frame)
 cv2.waitKey(0)

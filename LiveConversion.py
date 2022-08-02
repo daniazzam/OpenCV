@@ -120,10 +120,14 @@ while True:
         #print('Initial coordinates in cm wrt center: X: ' + str(x_wrtCenter)+" Y: "+str(y_wrtCenter))
 
         #get new coordinates wrt to initial frame depth
-        new_x_cm, new_y_cm  = getConversion(x_wrtCenter, y_wrtCenter, depth_z=45, reference_z=50)
+        depth_z=45
+        new_x_cm, new_y_cm  = getConversion(x_wrtCenter, y_wrtCenter, depth_z=depth_z, reference_z=50)
         #print('Coordinates after conversion in cm: X: ' + str(new_x_cm)+" Y: "+str(new_y_cm))
 
-        cv2.putText(frame, f'X: {x_wrtCenter:.1f} | Y: {y_wrtCenter:.1f} | Z: {50-45} (cm)', (int(91+column_loc-72),int(155+row_loc-5)), cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0,0,255), 1)
+        cv2.putText(frame, f'X: {x_wrtCenter:.1f} | Y: {y_wrtCenter:.1f} | Z: {50-depth_z} (cm)', (int(91+column_loc-72),
+                    int(155+row_loc-5)), 
+                    cv2.FONT_HERSHEY_SIMPLEX, 
+                    0.3, (0,0,255), 1)
 
         #new coordinates wrt frame in pixels
         new_x_wrtFrame, new_y_wrtFrame = getCoordinatesWRTFrame(new_x_cm * pixel_from_cm, new_y_cm * pixel_from_cm, ROI_x_center, ROI_y_center )
